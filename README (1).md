@@ -435,21 +435,4 @@ flowchart TB
 
 ---
 
-## Usage
-
-**GitHub** — Push this `README.md` to any repo. GitHub renders Mermaid natively.
-
-**Interactive** — Paste individual charts at [mermaid.live](https://mermaid.live)
-
-**Export to SVG/PNG:**
-
-```bash
-npm install -g @mermaid-js/mermaid-cli
-mmdc -i chart.mermaid -o chart.svg -w 2400
-```
-
-**Presentation** — Open `ic_memo_workflow_presentation.html` in any browser for a dark-mode, scroll-animated presentation with sidebar navigation.
-
----
-
 *IC Production Blueprint v2.0 · Confidential*
