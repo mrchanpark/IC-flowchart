@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Mermaid Flowchart</title>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose'
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f7f9;
+      color: #222;
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      overflow: auto;
+    }
+    .mermaid {
+      min-width: 900px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>My Flowchart</h1>
+    <p>Hosted on GitHub Pages</p>
+
+    <div class="card">
+      <pre class="mermaid">
+flowchart TD
+  A[Start] --> B[Create GitHub account]
+  B --> C[Create repository]
+  C --> D[Create index.html]
+  D --> E[Paste Mermaid code]
+  E --> F[Enable GitHub Pages]
+  F --> G[Open live link]
+      </pre>
+    </div>
+  </div>
+</body>
+</html>
