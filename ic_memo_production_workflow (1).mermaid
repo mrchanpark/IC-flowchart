@@ -1,0 +1,351 @@
+---
+title: "IC Memo Production Workflow — Blueprint v2.0"
+---
+flowchart TB
+
+%% ═══════════════════════════════════════════
+%% PRE-PRODUCTION: TRANSACTION INTAKE
+%% ═══════════════════════════════════════════
+subgraph PRE["🔧 Pre-Production: Transaction Intake"]
+  direction TB
+  P01(["CEO: Initiate memo production"]):::init --> P02["Define transaction type"]:::pre
+  P02 --> P03["Set round size & range"]:::pre
+  P03 --> P04["Establish valuation basis"]:::pre
+  P04 --> P05["Document decision required"]:::pre
+  P05 --> P06["Set confidentiality tier"]:::pre
+  P06 --> P07["Lock data cutoff date"]:::preHL
+  P07 --> P08["Set draft & final timeline"]:::pre
+end
+
+subgraph RACI["📋 Pre-Production: Ownership & Scoping"]
+  direction TB
+  P09["Assign Memo Owner"]:::pre --> P10["Assign Financial Data Owner"]:::pre
+  P10 --> P11["Assign Legal / Cap Table Owner"]:::pre
+  P11 --> P12["Assign Product / GTM Owner"]:::pre
+  P12 --> P13["Resolve scoping decisions with CEO"]:::pre
+  P13 --> P14{"Secondary liquidity?"}:::preQ
+  P14 -- Yes --> P15["Document sellers & amount"]:::pre
+  P14 -- No --> P16{"Insider participation?"}:::preQ
+  P15 --> P16
+  P16 -- Yes --> P17["Document pro rata commitments"]:::pre
+  P16 -- No --> P18["Confirm syndicate strategy"]:::pre
+  P17 --> P18
+  P18 --> P19["Finalize page budget"]:::preHL
+end
+
+PRE --> RACI
+
+%% ═══════════════════════════════════════════
+%% GATE 1
+%% ═══════════════════════════════════════════
+subgraph G1["🚧 Gate 1: Metrics Definition Lock"]
+  direction TB
+  G1a["Define ARR methodology"]:::gate --> G1b["Define NRR calculation"]:::gate
+  G1b --> G1c["Define churn: logo vs. revenue"]:::gate
+  G1c --> G1d["Define CAC scope"]:::gate
+  G1d --> G1e{"All definitions locked?"}:::gateQ
+  G1e -- No --> G1a
+  G1e -- Yes --> G1f["Finance Owner: SIGN-OFF ✓"]:::pass
+end
+
+RACI --> G1
+
+%% ═══════════════════════════════════════════
+%% STAGE 1: THE HOOK
+%% ═══════════════════════════════════════════
+subgraph S1["🎯 Stage 1: The Hook — Company Overview"]
+  direction TB
+  S1a["Draft Company Overview: mission, founding, milestones"]:::s1 --> S1b["Legal: Corporate structure & jurisdiction"]:::s1
+  S1b --> S1c["Legal: Cap table summary"]:::s1
+  S1c --> S1d["Finance: Headcount by function"]:::s1
+  S1d --> S1e["Finance: Prior funding summary"]:::s1
+  S1e --> S1f["Compile Section 2"]:::s1C
+end
+
+G1 --> S1
+
+%% ═══════════════════════════════════════════
+%% STAGE 2: THE OPPORTUNITY
+%% ═══════════════════════════════════════════
+subgraph S2["🌍 Stage 2: The Opportunity"]
+  direction TB
+  S2a["TAM: top-down"]:::s2 --> S2b["TAM: bottom-up"]:::s2
+  S2b --> S2c["Reconcile estimates"]:::s2
+  S2c --> S2d["Define SAM & SOM"]:::s2
+  S2d --> S2e["Market tailwinds"]:::s2
+  S2e --> S2f["Regulatory landscape"]:::s2
+  S2f --> S2g["Compile Section 3"]:::s2C
+  S2g --> S2h["Quantify customer pain"]:::s2
+  S2h --> S2i["Current alternatives"]:::s2
+  S2i --> S2j["Present solution"]:::s2
+  S2j --> S2k["Customer validation"]:::s2
+  S2k --> S2l["Compile Section 4"]:::s2C
+  S2l --> S2m["Revenue model & pricing"]:::s2
+  S2m --> S2n["LTV, CAC, payback"]:::s2
+  S2n --> S2o["Gross margin profile"]:::s2
+  S2o --> S2p["Expansion mechanics"]:::s2
+  S2p --> S2q["Compile Section 5"]:::s2C
+end
+
+S1 --> S2
+
+%% ═══════════════════════════════════════════
+%% STAGE 3: THE PROOF
+%% ═══════════════════════════════════════════
+subgraph S3["📊 Stage 3: The Proof"]
+  direction TB
+  S3a["ARR/MRR trajectory"]:::s3 --> S3b["Growth rates: YoY & QoQ"]:::s3
+  S3b --> S3c["Customer count & churn"]:::s3
+  S3c --> S3d["NRR & gross retention"]:::s3
+  S3d --> S3e["Burn multiple, rev/employee"]:::s3
+  S3e --> S3f["Pipeline multiple"]:::s3
+  S3f --> S3g["Compile Section 6"]:::s3C
+  S3g --> S3h["2×2 competitive map"]:::s3
+  S3h --> S3i["Win/loss data"]:::s3
+  S3i --> S3j["Document moats"]:::s3
+  S3j --> S3k["Compile Section 7"]:::s3C
+  S3k --> S3l["Define sales motion"]:::s3
+  S3l --> S3m["Funnel conversion"]:::s3
+  S3m --> S3n["Quota, ramp, cycle"]:::s3
+  S3n --> S3o["Magic number & CAC"]:::s3
+  S3o --> S3p["Compile Section 8"]:::s3C
+end
+
+S2 --> S3
+
+%% ═══════════════════════════════════════════
+%% STAGE 4: THE TEAM
+%% ═══════════════════════════════════════════
+subgraph S4["👥 Stage 4: The Team"]
+  direction TB
+  S4a["Founder & C-suite profiles"]:::s4 --> S4b["Org chart & headcount"]:::s4
+  S4b --> S4c["Key hires planned"]:::s4
+  S4c --> S4d["Retention metrics"]:::s4
+  S4d --> S4e["Compile Section 9"]:::s4C
+  S4e --> S4f["Board members"]:::s4
+  S4f --> S4g["Advisors"]:::s4
+  S4g --> S4h["Investor follow-on"]:::s4
+  S4h --> S4i["Compile Section 10"]:::s4C
+end
+
+S3 --> S4
+
+%% ═══════════════════════════════════════════
+%% GATE 2
+%% ═══════════════════════════════════════════
+subgraph G2["🚧 Gate 2: Financial Reconciliation"]
+  direction TB
+  G2a["Map figures to model cells"]:::gate --> G2b["Reconcile to GL: <1%"]:::gate
+  G2b --> G2c["Verify consistency: S1=S6=S11"]:::gate
+  G2c --> G2d{"All layers pass?"}:::gateQ
+  G2d -- No --> G2a
+  G2d -- Yes --> G2e["Joint sign-off ✓"]:::pass
+end
+
+S4 --> G2
+
+%% ═══════════════════════════════════════════
+%% STAGE 5: THE NUMBERS
+%% ═══════════════════════════════════════════
+subgraph S5["💰 Stage 5: The Numbers"]
+  direction TB
+  S5a["P&L: 2–3 FY"]:::s5 --> S5b["Balance sheet"]:::s5
+  S5b --> S5c["Cash flow & non-recurring"]:::s5
+  S5c --> S5d["Quarterly trends"]:::s5
+  S5d --> S5e["Compile Section 11"]:::s5C
+  S5e --> S5f["3–5yr forecast"]:::s5
+  S5f --> S5g["Key assumptions"]:::s5
+  S5g --> S5h["Scenarios: base/bull/bear"]:::s5
+  S5h --> S5i["Revenue bridge"]:::s5
+  S5i --> S5j["Profitability path"]:::s5
+  S5j --> S5k["Compile Section 12"]:::s5C
+  S5k --> S5l["Cash position"]:::s5
+  S5l --> S5m["Burn rate"]:::s5
+  S5m --> S5n["Runway"]:::s5
+  S5n --> S5o["Cash waterfall"]:::s5
+  S5o --> S5p["Milestone mapping"]:::s5
+  S5p --> S5q["Compile Section 13"]:::s5C
+end
+
+G2 --> S5
+
+%% ═══════════════════════════════════════════
+%% GATE 3
+%% ═══════════════════════════════════════════
+subgraph G3["🚧 Gate 3: Cap Table & Legal"]
+  direction TB
+  G3a["Verify ownership %"]:::gate --> G3b["Verify pool & convertibles"]:::gate
+  G3b --> G3c["Pro forma post-raise"]:::gate
+  G3c --> G3d["External counsel confirms"]:::gate
+  G3d --> G3e{"Fully reconciled?"}:::gateQ
+  G3e -- No --> G3a
+  G3e -- Yes --> G3f["Legal sign-off ✓"]:::pass
+end
+
+S5 --> G3
+
+%% ═══════════════════════════════════════════
+%% STAGE 6: THE ASK
+%% ═══════════════════════════════════════════
+subgraph S6["🎯 Stage 6: The Ask"]
+  direction TB
+  S6a["Round size & structure"]:::s6 --> S6b["Pre/post-money valuation"]:::s6
+  S6b --> S6c["Use of proceeds"]:::s6
+  S6c --> S6d["Dilution table"]:::s6
+  S6d --> S6e["Timeline & commitments"]:::s6
+  S6e --> S6f{"Transaction mechanics?"}:::s6Q
+  S6f -- Yes --> S6g["Secondary, insider, syndicate"]:::s6
+  S6f -- No --> S6h["Compile Section 14"]:::s6C
+  S6g --> S6h
+  S6h --> S6i["5–8 comps with multiples"]:::s6
+  S6i --> S6j["Precedent transactions"]:::s6
+  S6j --> S6k["Growth-adjusted multiples"]:::s6
+  S6k --> S6l{"DCF applicable?"}:::s6Q
+  S6l -- Yes --> S6m["Build DCF"]:::s6
+  S6l -- No --> S6n["Triangulate range"]:::s6
+  S6m --> S6n
+  S6n --> S6o["Internal: floor/target/ceiling"]:::s6
+  S6o --> S6p["Market condition note"]:::s6
+  S6p --> S6q["Compile Section 15"]:::s6C
+end
+
+G3 --> S6
+
+%% ═══════════════════════════════════════════
+%% STAGE 7: RISK & CLOSE
+%% ═══════════════════════════════════════════
+subgraph S7["⚠️ Stage 7: Risk & Close"]
+  direction TB
+  S7a["Market risks"]:::s7 --> S7b["Execution risks"]:::s7
+  S7b --> S7c["Financial risks"]:::s7
+  S7c --> S7d["Regulatory risks"]:::s7
+  S7d --> S7e["Pair each with mitigant"]:::s7
+  S7e --> S7f["Compile Section 16"]:::s7C
+  S7f --> S7g["12–18mo milestone plan"]:::s7
+  S7g --> S7h["Next-round triggers"]:::s7
+  S7h --> S7i["Long-term vision & exits"]:::s7
+  S7i --> S7j["Compile Section 17"]:::s7C
+  S7j --> S7k["Build appendix index"]:::s7
+  S7k --> S7l["Confidentiality tiering"]:::s7
+  S7l --> S7m["Compile Section 18"]:::s7C
+end
+
+S6 --> S7
+
+%% ═══════════════════════════════════════════
+%% EXECUTIVE SUMMARY
+%% ═══════════════════════════════════════════
+subgraph EXEC["📝 Executive Summary — Written Last"]
+  direction TB
+  E1["1-sentence company description"]:::exec --> E2["3–5 headline metrics"]:::exec
+  E2 --> E3["Round, valuation, UoP"]:::exec
+  E3 --> E4["Milestone statement"]:::exec
+  E4 --> E5["Compile Section 1 — max 1 page"]:::execC
+end
+
+S7 --> EXEC
+
+%% ═══════════════════════════════════════════
+%% GATE 4
+%% ═══════════════════════════════════════════
+subgraph G4["🚧 Gate 4: Appendix Completeness"]
+  direction TB
+  G4a["Review claims"]:::gate --> G4b{"All supported?"}:::gateQ
+  G4b -- No --> G4c["Add evidence or remove"]:::gateFix
+  G4c --> G4a
+  G4b -- Yes --> G4d["Refs cleared"]:::gate
+  G4d --> G4e["Screenshots current"]:::gate
+  G4e --> G4f["Sources cited"]:::gate
+  G4f --> G4g["Sign-off ✓"]:::pass
+end
+
+EXEC --> G4
+
+%% ═══════════════════════════════════════════
+%% DECISION BLOCK
+%% ═══════════════════════════════════════════
+subgraph DEC["✅ Section 19: Decision & Approval"]
+  direction TB
+  D1["Decision requested"]:::dec --> D2["Conditions & non-negotiables"]:::dec
+  D2 --> D3["Acceptable range"]:::dec
+  D3 --> D4["Fallback plan"]:::dec
+  D4 --> D5["Escalation triggers"]:::dec
+  D5 --> D6["Compile Section 19"]:::decC
+end
+
+G4 --> DEC
+
+%% ═══════════════════════════════════════════
+%% GATE 5
+%% ═══════════════════════════════════════════
+subgraph G5["🚧 Gate 5: Final Sign-Off & QC"]
+  direction TB
+  Q1["Financials match model"]:::qc --> Q2["Revenue consistent"]:::qc
+  Q2 --> Q3["Burn = 3mo actuals"]:::qc
+  Q3 --> Q4["UoP ties to plan"]:::qc
+  Q4 --> Q5["Comps refreshed"]:::qc
+  Q5 --> Q6["NDA cleared"]:::qc
+  Q6 --> Q7["Risk reviewed"]:::qc
+  Q7 --> Q8["Page budget OK"]:::qc
+  Q8 --> Q9["Index versioned"]:::qc
+  Q9 --> QP{"All pass?"}:::gateQ
+  QP -- No --> Q1
+  QP -- Yes --> QS1["Finance Owner ✓"]:::sign
+  QS1 --> QS2["Legal Owner ✓"]:::sign
+  QS2 --> QS3["CEO ✓"]:::sign
+  QS3 --> QS4["Memo Owner ✓"]:::sign
+  QS4 --> DONE(["🚀 CLEARED FOR DISTRIBUTION"]):::launch
+end
+
+DEC --> G5
+
+%% ═══════════════════════════════════════════
+%% STYLES
+%% ═══════════════════════════════════════════
+classDef init fill:#7c3aed,stroke:#6d28d9,color:#fff,font-weight:700
+classDef pre fill:#ede9fe,stroke:#8b5cf6,color:#1e1b4b
+classDef preHL fill:#c4b5fd,stroke:#7c3aed,color:#1e1b4b,font-weight:700
+classDef preQ fill:#c4b5fd,stroke:#7c3aed,color:#1e1b4b,font-weight:700
+classDef gate fill:#fef3c7,stroke:#d97706,color:#78350f
+classDef gateQ fill:#fbbf24,stroke:#d97706,color:#78350f,font-weight:700
+classDef gateFix fill:#fed7aa,stroke:#ea580c,color:#431407
+classDef pass fill:#16a34a,stroke:#15803d,color:#fff,font-weight:700
+classDef s1 fill:#dbeafe,stroke:#3b82f6,color:#1e3a5f
+classDef s1C fill:#2563eb,stroke:#1d4ed8,color:#fff,font-weight:700
+classDef s2 fill:#ccfbf1,stroke:#14b8a6,color:#134e4a
+classDef s2C fill:#0d9488,stroke:#0f766e,color:#fff,font-weight:700
+classDef s3 fill:#dcfce7,stroke:#22c55e,color:#14532d
+classDef s3C fill:#16a34a,stroke:#15803d,color:#fff,font-weight:700
+classDef s4 fill:#e0e7ff,stroke:#6366f1,color:#1e1b4b
+classDef s4C fill:#4f46e5,stroke:#4338ca,color:#fff,font-weight:700
+classDef s5 fill:#cffafe,stroke:#06b6d4,color:#164e63
+classDef s5C fill:#0891b2,stroke:#0e7490,color:#fff,font-weight:700
+classDef s6 fill:#ffedd5,stroke:#f97316,color:#431407
+classDef s6Q fill:#fdba74,stroke:#ea580c,color:#431407,font-weight:700
+classDef s6C fill:#ea580c,stroke:#c2410c,color:#fff,font-weight:700
+classDef s7 fill:#fee2e2,stroke:#ef4444,color:#450a0a
+classDef s7C fill:#dc2626,stroke:#b91c1c,color:#fff,font-weight:700
+classDef exec fill:#fef9c3,stroke:#ca8a04,color:#713f12
+classDef execC fill:#ca8a04,stroke:#a16207,color:#fff,font-weight:700
+classDef dec fill:#dcfce7,stroke:#22c55e,color:#14532d
+classDef decC fill:#15803d,stroke:#166534,color:#fff,font-weight:700
+classDef qc fill:#e2e8f0,stroke:#475569,color:#1e293b
+classDef sign fill:#86efac,stroke:#16a34a,color:#14532d,font-weight:700
+classDef launch fill:#16a34a,stroke:#15803d,color:#fff,font-weight:700
+
+style PRE fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+style RACI fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+style G1 fill:#fffbeb,stroke:#d97706,stroke-width:2px,stroke-dasharray:6 3
+style G2 fill:#fffbeb,stroke:#d97706,stroke-width:2px,stroke-dasharray:6 3
+style G3 fill:#fffbeb,stroke:#d97706,stroke-width:2px,stroke-dasharray:6 3
+style G4 fill:#fffbeb,stroke:#d97706,stroke-width:2px,stroke-dasharray:6 3
+style G5 fill:#fffbeb,stroke:#d97706,stroke-width:2px,stroke-dasharray:6 3
+style S1 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+style S2 fill:#f0fdfa,stroke:#14b8a6,stroke-width:2px
+style S3 fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
+style S4 fill:#eef2ff,stroke:#6366f1,stroke-width:2px
+style S5 fill:#ecfeff,stroke:#06b6d4,stroke-width:2px
+style S6 fill:#fff7ed,stroke:#f97316,stroke-width:2px
+style S7 fill:#fef2f2,stroke:#ef4444,stroke-width:2px
+style EXEC fill:#fefce8,stroke:#ca8a04,stroke-width:2px
+style DEC fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
