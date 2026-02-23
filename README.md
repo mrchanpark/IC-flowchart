@@ -31,8 +31,10 @@
 ```mermaid
 flowchart TB
 
-%% PRE-PRODUCTION: Transaction Intake & Scoping
-subgraph PRE["🔧 Pre-Production"]
+%% ════════════════════════════════════════════════
+%% PRE-PRODUCTION: TRANSACTION INTAKE & SCOPING
+%% ════════════════════════════════════════════════
+subgraph PRE["🔧 PRE-PRODUCTION: Transaction Intake & Scoping"]
     direction TB
     P01(["CEO: Initiates fundraising memo production"]) --> P02["Memo Owner: Define transaction type — priced round, SAFE, convertible, bridge"]
     P02 --> P03["Memo Owner: Set round size target and acceptable range"]
