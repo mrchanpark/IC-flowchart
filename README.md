@@ -564,23 +564,4 @@ style DECIDE fill:#E8F5E9,stroke:#1B5E20,stroke-width:2px
 
 ---
 
-## How to Use
-
-1. **GitHub**: Push this `README.md` to any repo — GitHub renders Mermaid natively
-2. **Mermaid Live Editor**: Paste the chart at [mermaid.live](https://mermaid.live) for interactive editing
-3. **Export**: Use Mermaid CLI (`mmdc`) to export as SVG/PNG for slides
-
-```bash
-# Install Mermaid CLI
-npm install -g @mermaid-js/mermaid-cli
-
-# Export to SVG
-mmdc -i ic_memo_production_workflow.mermaid -o workflow.svg -w 2400
-
-# Export to PNG
-mmdc -i ic_memo_production_workflow.mermaid -o workflow.png -w 2400 -s 2
-```
-
----
-
 *IC Production Blueprint v2.0 — Confidential*
