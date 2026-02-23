@@ -29,12 +29,26 @@
 ## Workflow
 
 ```mermaid
+%%{init: {
+  "flowchart": {
+    "useMaxWidth": false,
+    "htmlLabels": true,
+    "nodeSpacing": 45,
+    "rankSpacing": 70,
+    "padding": 20,
+    "curve": "basis"
+  },
+  "themeVariables": {
+    "fontSize": "12px",
+    "lineHeight": "1.35"
+  }
+}}%%
 flowchart TB
 
 %% ════════════════════════════════════════════════
 %% PRE-PRODUCTION: TRANSACTION INTAKE & SCOPING
 %% ════════════════════════════════════════════════
-subgraph PRE["🔧 PRE-PRODUCTION: Transaction Intake & Scoping"]
+subgraph PRE["🔧 PRE-PRODUCTION<br/>Transaction Intake & Scoping"]
     direction TB
     P01(["CEO: Initiates fundraising memo production"]) --> P02["Memo Owner: Define transaction type — priced round, SAFE, convertible, bridge"]
     P02 --> P03["Memo Owner: Set round size target and acceptable range"]
@@ -45,7 +59,7 @@ subgraph PRE["🔧 PRE-PRODUCTION: Transaction Intake & Scoping"]
     P07 --> P08["Memo Owner: Set timeline — first draft target and final distribution date"]
 end
 
-subgraph RACI["📋 PRE-PRODUCTION: Ownership & Scoping Decisions"]
+subgraph RACI["📋 PRE-PRODUCTION<br/>Ownership & Scoping Decisions"]
     direction TB
     P09["CEO: Assign Memo Owner / Project Lead"] --> P10["CEO: Assign Financial Data Owner"]
     P10 --> P11["CEO: Assign Legal / Cap Table Owner"]
@@ -66,7 +80,7 @@ PRE --> RACI
 %% ════════════════════════════════════════════════
 %% GATE 1: METRICS DEFINITION LOCK
 %% ════════════════════════════════════════════════
-subgraph G1["🚧 GATE 1: Metrics Definition Lock"]
+subgraph G1["🚧 GATE 1<br/>Metrics Definition Lock"]
     direction TB
     G1_01["Finance: Define ARR methodology — annualized MRR vs contracted vs GAAP"] --> G1_02["Finance: Define NRR calculation — cohort-based vs dollar-weighted"]
     G1_02 --> G1_03["Finance: Define churn — logo vs revenue, gross vs net"]
@@ -161,7 +175,7 @@ S3 --> S4
 %% ════════════════════════════════════════════════
 %% GATE 2: FINANCIAL RECONCILIATION
 %% ════════════════════════════════════════════════
-subgraph G2["🚧 GATE 2: Financial Reconciliation"]
+subgraph G2["🚧 GATE 2<br/>Financial Reconciliation"]
     direction TB
     G2_01["Finance: Map every memo figure to a named cell in the financial model"] --> G2_02["Finance: Reconcile model historical period to GL actuals — target <1% variance"]
     G2_02 --> G2_03["Finance: Verify internal consistency — S1 revenue = S6 revenue = S11 revenue"]
@@ -200,7 +214,7 @@ G2 --> S5
 %% ════════════════════════════════════════════════
 %% GATE 3: CAP TABLE & LEGAL RECONCILIATION
 %% ════════════════════════════════════════════════
-subgraph G3["🚧 GATE 3: Cap Table & Legal Reconciliation"]
+subgraph G3["🚧 GATE 3<br/>Cap Table & Legal Reconciliation"]
     direction TB
     G3_01["Legal: Verify current ownership percentages in cap table"] --> G3_02["Legal: Verify option pool size, utilization, and outstanding convertibles"]
     G3_02 --> G3_03["Legal: Calculate pro forma ownership post-raise"]
@@ -263,7 +277,7 @@ S6 --> S7
 %% ════════════════════════════════════════════════
 %% EXECUTIVE SUMMARY (written last)
 %% ════════════════════════════════════════════════
-subgraph EXEC["📝 EXECUTIVE SUMMARY — Written Last"]
+subgraph EXEC["📝 EXECUTIVE SUMMARY<br/>Written Last"]
     direction TB
     E01["CEO + Memo Owner: Draft 1-sentence company description"] --> E02["Finance: Pull 3–5 finalized headline metrics — ARR, growth, NRR"]
     E02 --> E03["Memo Owner: Summarize round size, valuation, and use of proceeds"]
@@ -276,7 +290,7 @@ S7 --> EXEC
 %% ════════════════════════════════════════════════
 %% GATE 4: APPENDIX COMPLETENESS
 %% ════════════════════════════════════════════════
-subgraph G4["🚧 GATE 4: Appendix Completeness"]
+subgraph G4["🚧 GATE 4<br/>Appendix Completeness"]
     direction TB
     G4_01["Memo Owner: Review each core memo section for data-dependent claims"] --> G4_02{"Every claim has a corresponding appendix item?"}
     G4_02 -- No --> G4_03["Add missing evidence to appendix OR remove unsupported claim"]
@@ -306,7 +320,7 @@ G4 --> DECIDE
 %% ════════════════════════════════════════════════
 %% GATE 5: SIGN-OFF GATE + PRE-SUBMISSION
 %% ════════════════════════════════════════════════
-subgraph G5["🚧 GATE 5: Final Sign-Off & Pre-Submission QC"]
+subgraph G5["🚧 GATE 5<br/>Final Sign-Off & Pre-Submission QC"]
     direction TB
     QC01["Memo Owner: Verify all financials match model exactly — no rounding errors"] --> QC02["Memo Owner: Verify revenue/ARR consistent across S1, S6, S11, S12, S14"]
     QC02 --> QC03["Memo Owner: Verify burn rate uses trailing 3-month actuals"]
