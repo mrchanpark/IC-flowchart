@@ -1,581 +1,438 @@
 # IC Memo Production Workflow
 
-**Company-Side Fundraising Memo — Full Blueprint v2.0**
+### Company-Side Fundraising Memo — Blueprint v2.0
 
-> 100-step production workflow covering Pre-Production through Final Distribution.  
-> 7 Stages · 5 Validation Gates · 18 Content Sections · Decision & Approval Block
-
----
-
-## Color Legend
-
-| Color | Meaning |
-|-------|---------|
-| 🟣 Purple | Pre-Production — Scoping & Setup |
-| 🔵 Blue | Stage 1 — The Hook |
-| 🟢 Teal | Stage 2 — The Opportunity |
-| 🟩 Green | Stage 3 — The Proof |
-| 🔵 Indigo | Stage 4 — The Team |
-| 🔵 Cyan | Stage 5 — The Numbers |
-| 🟠 Orange | Stage 6 — The Ask |
-| 🔴 Red/Pink | Stage 7 — Risk & Close |
-| 🟡 Gold | Executive Summary (written last) |
-| 🟡 Amber (dashed border) | Validation Gates (1–5) |
-| ⬜ Blue-Grey | Pre-Submission QC Checklist |
-| ✅ Green (dark) | Sign-Off & Distribution |
+> **100+ action steps** · **7 stages** · **5 validation gates** · **18 content sections**
+> Stage-agnostic framework: Series A through Pre-IPO
 
 ---
 
-## Workflow
+## Color System
+
+| Color | Phase | Sections |
+|:---:|---|---|
+| 🟣 | **Pre-Production** | Scoping, Ownership, Page Budget |
+| 🟡 | **Validation Gates** | Gates 1–5 (hard checkpoints) |
+| 🔵 | **Stage 1** — The Hook | Sections 1–2 |
+| 🟢 | **Stage 2** — The Opportunity | Sections 3–5 |
+| 🟩 | **Stage 3** — The Proof | Sections 6–8 |
+| 🟤 | **Stage 4** — The Team | Sections 9–10 |
+| 🔷 | **Stage 5** — The Numbers | Sections 11–13 |
+| 🟠 | **Stage 6** — The Ask | Sections 14–15 |
+| 🔴 | **Stage 7** — Risk & Close | Sections 16–18 |
+| ⭐ | **Executive Summary** | Written last, after all stages |
+| ✅ | **Decision & Sign-Off** | Section 19 + Gate 5 |
+
+---
+
+## Pre-Production: Transaction Intake
 
 ```mermaid
-%%{init: {
-  "flowchart": {
-    "useMaxWidth": false,
-    "htmlLabels": true,
-    "nodeSpacing": 45,
-    "rankSpacing": 70,
-    "padding": 20,
-    "curve": "basis"
-  },
-  "themeVariables": {
-    "fontSize": "12px",
-    "lineHeight": "1.35"
-  }
-}}%%
+flowchart LR
+  P01(["CEO: Initiate memo production"]):::init --> P02["Define transaction type"]:::s
+  P02 --> P03["Set round size & range"]:::s
+  P03 --> P04["Establish valuation basis"]:::s
+  P04 --> P05["Document decision required"]:::s
+  P05 --> P06["Set confidentiality tier"]:::s
+  P06 --> P07["Lock data cutoff date"]:::d
+  P07 --> P08["Set draft & final timeline"]:::s
+  classDef init fill:#7c3aed,stroke:#6d28d9,color:#fff,font-weight:700
+  classDef s fill:#ede9fe,stroke:#8b5cf6,color:#1e1b4b
+  classDef d fill:#c4b5fd,stroke:#7c3aed,color:#1e1b4b,font-weight:700
+```
+
+## Pre-Production: Ownership & Scoping Decisions
+
+```mermaid
 flowchart TB
-
-%% ════════════════════════════════════════════════
-%% PRE-PRODUCTION: TRANSACTION INTAKE & SCOPING
-%% ════════════════════════════════════════════════
-subgraph PRE["🔧 PRE-PRODUCTION<br/>Transaction Intake & Scoping"]
-    direction TB
-    P01(["CEO: Initiates fundraising memo production"]) --> P02["Memo Owner: Define transaction type — priced round, SAFE, convertible, bridge"]
-    P02 --> P03["Memo Owner: Set round size target and acceptable range"]
-    P03 --> P04["Memo Owner: Establish valuation basis — pre-money, post-money, or cap"]
-    P04 --> P05["Memo Owner: Document decision required — board auth, alignment, or process launch"]
-    P05 --> P06["Memo Owner: Identify target audiences and set confidentiality tier"]
-    P06 --> P07["Finance: Lock data cutoff date for all financial metrics"]
-    P07 --> P08["Memo Owner: Set timeline — first draft target and final distribution date"]
-end
-
-subgraph RACI["📋 PRE-PRODUCTION<br/>Ownership & Scoping Decisions"]
-    direction TB
-    P09["CEO: Assign Memo Owner / Project Lead"] --> P10["CEO: Assign Financial Data Owner"]
-    P10 --> P11["CEO: Assign Legal / Cap Table Owner"]
-    P11 --> P12["CEO: Assign Product / GTM Owner"]
-    P12 --> P13["CEO + Memo Owner: Resolve scoping decisions"]
-    P13 --> P14{"Secondary liquidity included?"}
-    P14 -- Yes --> P15["Document amount and eligible sellers"]
-    P14 -- No --> P16{"Insider participation expected?"}
-    P15 --> P16
-    P16 -- Yes --> P17["Document pro rata commitments"]
-    P16 -- No --> P18["Memo Owner: Confirm syndicate strategy and term sheet status"]
-    P17 --> P18
-    P18 --> P19["Memo Owner: Finalize page budget — 20pg core + 30-40pg appendix"]
-end
-
-PRE --> RACI
-
-%% ════════════════════════════════════════════════
-%% GATE 1: METRICS DEFINITION LOCK
-%% ════════════════════════════════════════════════
-subgraph G1["🚧 GATE 1<br/>Metrics Definition Lock"]
-    direction TB
-    G1_01["Finance: Define ARR methodology — annualized MRR vs contracted vs GAAP"] --> G1_02["Finance: Define NRR calculation — cohort-based vs dollar-weighted"]
-    G1_02 --> G1_03["Finance: Define churn — logo vs revenue, gross vs net"]
-    G1_03 --> G1_04["Finance: Define CAC scope — fully loaded vs direct"]
-    G1_04 --> G1_05{"Financial Data Owner: All metric definitions locked and documented?"}
-    G1_05 -- No --> G1_01
-    G1_05 -- Yes --> G1_06["Financial Data Owner: Signs off on Metrics Definition Lock"]
-end
-
-RACI --> G1
-
-%% ════════════════════════════════════════════════
-%% STAGE 1: THE HOOK (Sections 1–2)
-%% ════════════════════════════════════════════════
-subgraph S1["🎯 STAGE 1 — THE HOOK"]
-    direction TB
-    S1_01["Product/GTM Owner: Draft Company Overview — mission, founding story, milestones"] --> S1_02["Legal: Provide corporate structure — entity type, jurisdiction, subsidiaries"]
-    S1_02 --> S1_03["Legal: Provide cap table summary — founders %, employee pool %, investors %"]
-    S1_03 --> S1_04["Finance: Provide headcount breakdown by function"]
-    S1_04 --> S1_05["Finance: Provide prior funding summary — round, amount, lead investor"]
-    S1_05 --> S1_06["Memo Owner: Compile Section 2 — Company Overview draft"]
-end
-
-G1 --> S1
-
-%% ════════════════════════════════════════════════
-%% STAGE 2: THE OPPORTUNITY (Sections 3–5)
-%% ════════════════════════════════════════════════
-subgraph S2["🌍 STAGE 2 — THE OPPORTUNITY"]
-    direction TB
-    S2_01["Product/Strategy: Build TAM — top-down from industry reports"] --> S2_02["Product/Strategy: Build TAM — bottom-up from customer count × ACV"]
-    S2_02 --> S2_03["Product/Strategy: Reconcile top-down and bottom-up TAM estimates"]
-    S2_03 --> S2_04["Product/Strategy: Define SAM and SOM with penetration logic"]
-    S2_04 --> S2_05["Product/Strategy: Document 2–4 key market tailwinds with sources"]
-    S2_05 --> S2_06["Product/Strategy: Address regulatory landscape if material"]
-    S2_06 --> S2_07["Memo Owner: Compile Section 3 — Market Opportunity draft"]
-    S2_07 --> S2_08["Product: Describe customer pain points with quantified cost"]
-    S2_08 --> S2_09["Product: Document current alternatives and their shortcomings"]
-    S2_09 --> S2_10["Product: Present solution — core value delivery mechanism"]
-    S2_10 --> S2_11["Customer Success: Gather customer quotes, NPS, case studies"]
-    S2_11 --> S2_12["Memo Owner: Compile Section 4 — Problem & Solution draft"]
-    S2_12 --> S2_13["Finance: Document revenue model — pricing tiers, contract terms, billing"]
-    S2_13 --> S2_14["Finance: Calculate unit economics — LTV, CAC, LTV:CAC, payback"]
-    S2_14 --> S2_15["Finance: Document gross margin profile and trend"]
-    S2_15 --> S2_16["Finance: Describe expansion revenue mechanics"]
-    S2_16 --> S2_17["Memo Owner: Compile Section 5 — Business Model draft"]
-end
-
-S1 --> S2
-
-%% ════════════════════════════════════════════════
-%% STAGE 3: THE PROOF (Sections 6–8)
-%% ════════════════════════════════════════════════
-subgraph S3["📊 STAGE 3 — THE PROOF"]
-    direction TB
-    S3_01["Finance: Pull ARR/MRR trajectory — monthly and annual views"] --> S3_02["Finance: Calculate revenue growth rates — YoY and QoQ"]
-    S3_02 --> S3_03["Finance: Compile customer count trajectory and logo churn"]
-    S3_03 --> S3_04["Finance: Calculate NRR and gross retention from cohort data"]
-    S3_04 --> S3_05["Finance: Calculate efficiency metrics — burn multiple, rev per employee"]
-    S3_05 --> S3_06["RevOps: Pull qualified pipeline as multiple of quota"]
-    S3_06 --> S3_07["Memo Owner: Compile Section 6 — Traction & Key Metrics draft"]
-    S3_07 --> S3_08["Product/Sales: Build competitive positioning map — 2×2 matrix"]
-    S3_08 --> S3_09["Sales: Compile win/loss data against named competitors"]
-    S3_09 --> S3_10["Product: Document moats — switching costs, data advantages, IP"]
-    S3_10 --> S3_11["Memo Owner: Compile Section 7 — Competitive Landscape draft"]
-    S3_11 --> S3_12["Sales: Define sales motion — PLG, direct, channel, or hybrid"]
-    S3_12 --> S3_13["RevOps: Document funnel conversion rates by stage"]
-    S3_13 --> S3_14["Sales: Provide quota attainment, ramp times, and sales cycle data"]
-    S3_14 --> S3_15["Finance: Calculate magic number and CAC by channel"]
-    S3_15 --> S3_16["Memo Owner: Compile Section 8 — GTM Strategy draft"]
-end
-
-S2 --> S3
-
-%% ════════════════════════════════════════════════
-%% STAGE 4: THE TEAM (Sections 9–10)
-%% ════════════════════════════════════════════════
-subgraph S4["👥 STAGE 4 — THE TEAM"]
-    direction TB
-    S4_01["HR/CEO: Draft founder and C-suite profiles with domain expertise"] --> S4_02["HR: Provide org chart and headcount breakdown by department"]
-    S4_02 --> S4_03["HR/Finance: Document key hires planned with this capital"]
-    S4_03 --> S4_04["HR: Provide retention metrics — voluntary turnover, avg tenure"]
-    S4_04 --> S4_05["Memo Owner: Compile Section 9 — Team & Leadership draft"]
-    S4_05 --> S4_06["Legal/CEO: List board members with backgrounds and independence status"]
-    S4_06 --> S4_07["CEO: List strategic advisors and specific value provided"]
-    S4_07 --> S4_08["CEO: Document existing investor follow-on commitments"]
-    S4_08 --> S4_09["Memo Owner: Compile Section 10 — Board & Advisors draft"]
-end
-
-S3 --> S4
-
-%% ════════════════════════════════════════════════
-%% GATE 2: FINANCIAL RECONCILIATION
-%% ════════════════════════════════════════════════
-subgraph G2["🚧 GATE 2<br/>Financial Reconciliation"]
-    direction TB
-    G2_01["Finance: Map every memo figure to a named cell in the financial model"] --> G2_02["Finance: Reconcile model historical period to GL actuals — target <1% variance"]
-    G2_02 --> G2_03["Finance: Verify internal consistency — S1 revenue = S6 revenue = S11 revenue"]
-    G2_03 --> G2_04{"Finance + Memo Owner: All three reconciliation layers pass?"}
-    G2_04 -- No --> G2_01
-    G2_04 -- Yes --> G2_05["Finance + Memo Owner: Joint sign-off on Financial Reconciliation"]
-end
-
-S4 --> G2
-
-%% ════════════════════════════════════════════════
-%% STAGE 5: THE NUMBERS (Sections 11–13)
-%% ════════════════════════════════════════════════
-subgraph S5["💰 STAGE 5 — THE NUMBERS"]
-    direction TB
-    S5_01["Finance: Pull P&L summary — 2–3 FY of revenue, COGS, gross profit, OpEx, EBITDA"] --> S5_02["Finance: Pull balance sheet snapshot — cash, working capital, debt"]
-    S5_02 --> S5_03["Finance: Pull cash flow summary and identify non-recurring items"]
-    S5_03 --> S5_04["Finance: Show quarterly trends where they add context"]
-    S5_04 --> S5_05["Memo Owner: Compile Section 11 — Historical Financials draft"]
-    S5_05 --> S5_06["Finance: Build 3–5 year revenue forecast with quarterly Y1 detail"]
-    S5_06 --> S5_07["Finance: Document key assumptions — customer growth, ACV, NRR, hiring"]
-    S5_07 --> S5_08["Finance: Build scenario analysis — base, bull, bear cases"]
-    S5_08 --> S5_09["Finance: Build revenue bridge — new logos + expansion − churn"]
-    S5_09 --> S5_10["Finance: Show path to profitability and FCF trajectory"]
-    S5_10 --> S5_11["Memo Owner: Compile Section 12 — Financial Projections draft"]
-    S5_11 --> S5_12["Finance: State current cash position as of most recent month-end"]
-    S5_12 --> S5_13["Finance: Calculate monthly burn rate — trailing 3-month average"]
-    S5_13 --> S5_14["Finance: Calculate runway in months and post-raise runway"]
-    S5_14 --> S5_15["Finance: Build cash waterfall — opening + raise − burn = ending"]
-    S5_15 --> S5_16["Finance: Map milestones to capital required and timelines"]
-    S5_16 --> S5_17["Memo Owner: Compile Section 13 — Cash & Runway draft"]
-end
-
-G2 --> S5
-
-%% ════════════════════════════════════════════════
-%% GATE 3: CAP TABLE & LEGAL RECONCILIATION
-%% ════════════════════════════════════════════════
-subgraph G3["🚧 GATE 3<br/>Cap Table & Legal Reconciliation"]
-    direction TB
-    G3_01["Legal: Verify current ownership percentages in cap table"] --> G3_02["Legal: Verify option pool size, utilization, and outstanding convertibles"]
-    G3_02 --> G3_03["Legal: Calculate pro forma ownership post-raise"]
-    G3_03 --> G3_04["External Counsel: Confirm all issued securities, vested/unvested options, and obligations"]
-    G3_04 --> G3_05{"Legal + External Counsel: Cap table fully reconciled?"}
-    G3_05 -- No --> G3_01
-    G3_05 -- Yes --> G3_06["Legal + External Counsel: Joint sign-off on Cap Table Reconciliation"]
-end
-
-S5 --> G3
-
-%% ════════════════════════════════════════════════
-%% STAGE 6: THE ASK (Sections 14–15)
-%% ════════════════════════════════════════════════
-subgraph S6["🎯 STAGE 6 — THE ASK"]
-    direction TB
-    S6_01["Finance/CEO: State round size and structure"] --> S6_02["Finance: Present pre-money and post-money valuation"]
-    S6_02 --> S6_03["Finance: Break down use of proceeds into 3–5 categories"]
-    S6_03 --> S6_04["Finance: Build pro forma ownership table showing dilution impact"]
-    S6_04 --> S6_05["CEO: Document target close timeline and existing commitments"]
-    S6_05 --> S6_06{"Stage requires transaction mechanics detail?"}
-    S6_06 -- Yes --> S6_07["Finance/Legal: Document primary vs secondary split, insider participation, syndicate strategy"]
-    S6_06 -- No --> S6_08["Memo Owner: Compile Section 14 — The Raise draft"]
-    S6_07 --> S6_08
-    S6_08 --> S6_09["Finance: Build comparable company analysis — 5–8 comps with multiples"]
-    S6_09 --> S6_10["Finance: Compile precedent transactions at comparable stage"]
-    S6_10 --> S6_11["Finance: Calculate growth-adjusted multiples"]
-    S6_11 --> S6_12{"Business mature enough for DCF?"}
-    S6_12 -- Yes --> S6_13["Finance: Build DCF with WACC and terminal value"]
-    S6_12 -- No --> S6_14["Finance: Triangulate implied valuation range — low, mid, high"]
-    S6_13 --> S6_14
-    S6_14 --> S6_15["Finance: Document internal bridge-to-offer — floor, target, ceiling"]
-    S6_15 --> S6_16["Finance: Draft market condition note and comp refresh date"]
-    S6_16 --> S6_17["Memo Owner: Compile Section 15 — Valuation Support draft"]
-end
-
-G3 --> S6
-
-%% ════════════════════════════════════════════════
-%% STAGE 7: RISK & CLOSE (Sections 16–18)
-%% ════════════════════════════════════════════════
-subgraph S7["⚠️ STAGE 7 — RISK & CLOSE"]
-    direction TB
-    S7_01["Memo Owner: Identify market risks — demand, competition, macro"] --> S7_02["Memo Owner: Identify execution risks — key person, hiring, product delivery"]
-    S7_02 --> S7_03["Finance: Identify financial risks — concentration, capital needs, dilution"]
-    S7_03 --> S7_04["Legal: Identify regulatory risks — compliance, litigation, IP, data privacy"]
-    S7_04 --> S7_05["All Owners: Pair each risk with a specific, measurable mitigant"]
-    S7_05 --> S7_06["Memo Owner: Compile Section 16 — Key Risks & Mitigants draft"]
-    S7_06 --> S7_07["CEO/Finance: Build 12–18 month milestone plan with quarterly waypoints"]
-    S7_07 --> S7_08["CEO: Identify next-round trigger metrics"]
-    S7_08 --> S7_09["CEO: Articulate long-term vision and potential exit paths"]
-    S7_09 --> S7_10["Memo Owner: Compile Section 17 — Milestones & Path Forward draft"]
-    S7_10 --> S7_11["Memo Owner: Build appendix index with hierarchical codes — A, B, C, D series"]
-    S7_11 --> S7_12["Memo Owner: Apply confidentiality tiering to each appendix item"]
-    S7_12 --> S7_13["Memo Owner: Compile Section 18 — Appendices Index draft"]
-end
-
-S6 --> S7
-
-%% ════════════════════════════════════════════════
-%% EXECUTIVE SUMMARY (written last)
-%% ════════════════════════════════════════════════
-subgraph EXEC["📝 EXECUTIVE SUMMARY<br/>Written Last"]
-    direction TB
-    E01["CEO + Memo Owner: Draft 1-sentence company description"] --> E02["Finance: Pull 3–5 finalized headline metrics — ARR, growth, NRR"]
-    E02 --> E03["Memo Owner: Summarize round size, valuation, and use of proceeds"]
-    E03 --> E04["CEO: Write forward-looking milestone statement"]
-    E04 --> E05["Memo Owner: Compile Section 1 — Executive Summary — max 1 page"]
-end
-
-S7 --> EXEC
-
-%% ════════════════════════════════════════════════
-%% GATE 4: APPENDIX COMPLETENESS
-%% ════════════════════════════════════════════════
-subgraph G4["🚧 GATE 4<br/>Appendix Completeness"]
-    direction TB
-    G4_01["Memo Owner: Review each core memo section for data-dependent claims"] --> G4_02{"Every claim has a corresponding appendix item?"}
-    G4_02 -- No --> G4_03["Add missing evidence to appendix OR remove unsupported claim"]
-    G4_03 --> G4_01
-    G4_02 -- Yes --> G4_04["Memo Owner: Verify customer references cleared for use"]
-    G4_04 --> G4_05["Memo Owner: Verify product screenshots are current"]
-    G4_05 --> G4_06["Memo Owner: Verify market data sources are cited"]
-    G4_06 --> G4_07["Memo Owner: Signs off on Appendix Completeness"]
-end
-
-EXEC --> G4
-
-%% ════════════════════════════════════════════════
-%% DECISION & APPROVAL BLOCK
-%% ════════════════════════════════════════════════
-subgraph DECIDE["✅ DECISION & APPROVAL BLOCK"]
-    direction TB
-    D01["Memo Owner: Draft decision requested — specific approval being sought"] --> D02["CEO: Define approval conditions and non-negotiables"]
-    D02 --> D03["CEO + Board: Define acceptable negotiation range"]
-    D03 --> D04["Finance: Document fallback plan with quantified runway"]
-    D04 --> D05["CEO: Define escalation triggers requiring re-approval"]
-    D05 --> D06["Memo Owner: Compile Section 19 — Decision & Approval Block"]
-end
-
-G4 --> DECIDE
-
-%% ════════════════════════════════════════════════
-%% GATE 5: SIGN-OFF GATE + PRE-SUBMISSION
-%% ════════════════════════════════════════════════
-subgraph G5["🚧 GATE 5<br/>Final Sign-Off & Pre-Submission QC"]
-    direction TB
-    QC01["Memo Owner: Verify all financials match model exactly — no rounding errors"] --> QC02["Memo Owner: Verify revenue/ARR consistent across S1, S6, S11, S12, S14"]
-    QC02 --> QC03["Memo Owner: Verify burn rate uses trailing 3-month actuals"]
-    QC03 --> QC04["Memo Owner: Verify use of proceeds ties to hiring plan and milestone map"]
-    QC04 --> QC05["Memo Owner: Verify comp set refreshed within 30 days"]
-    QC05 --> QC06["Legal: Verify customer names/logos cleared — NDA compliance"]
-    QC06 --> QC07["Legal: Verify risk disclosures reviewed"]
-    QC07 --> QC08["Memo Owner: Verify no section exceeds page budget by >50%"]
-    QC08 --> QC09["Memo Owner: Verify appendix index complete with version numbers"]
-    QC09 --> QC10{"All pre-submission checks pass?"}
-    QC10 -- No --> QC01
-    QC10 -- Yes --> QC11["Financial Data Owner: Signs off — numbers accurate and reconciled"]
-    QC11 --> QC12["Legal/Cap Table Owner: Signs off — structure, cap table, risk disclosures accurate"]
-    QC12 --> QC13["CEO: Signs off — narrative, positioning, valuation ask aligned"]
-    QC13 --> QC14["Memo Owner: Signs off — consistency, formatting, appendix complete"]
-    QC14 --> QC15(["🚀 MEMO CLEARED FOR DISTRIBUTION"])
-end
-
-DECIDE --> G5
-
-%% ════════════════════════════════════════════════
-%% STYLES
-%% ════════════════════════════════════════════════
-
-%% Pre-Production — purple
-style P01 fill:#E1BEE7,stroke:#6A1B9A
-style P02 fill:#F3E5F5,stroke:#6A1B9A
-style P03 fill:#F3E5F5,stroke:#6A1B9A
-style P04 fill:#F3E5F5,stroke:#6A1B9A
-style P05 fill:#F3E5F5,stroke:#6A1B9A
-style P06 fill:#F3E5F5,stroke:#6A1B9A
-style P07 fill:#F3E5F5,stroke:#6A1B9A
-style P08 fill:#F3E5F5,stroke:#6A1B9A
-style P09 fill:#F3E5F5,stroke:#6A1B9A
-style P10 fill:#F3E5F5,stroke:#6A1B9A
-style P11 fill:#F3E5F5,stroke:#6A1B9A
-style P12 fill:#F3E5F5,stroke:#6A1B9A
-style P13 fill:#F3E5F5,stroke:#6A1B9A
-style P14 fill:#CE93D8,stroke:#6A1B9A
-style P15 fill:#F3E5F5,stroke:#6A1B9A
-style P16 fill:#CE93D8,stroke:#6A1B9A
-style P17 fill:#F3E5F5,stroke:#6A1B9A
-style P18 fill:#F3E5F5,stroke:#6A1B9A
-style P19 fill:#F3E5F5,stroke:#6A1B9A
-
-%% Gates — amber
-style G1_01 fill:#FFF8E1,stroke:#F57F17
-style G1_02 fill:#FFF8E1,stroke:#F57F17
-style G1_03 fill:#FFF8E1,stroke:#F57F17
-style G1_04 fill:#FFF8E1,stroke:#F57F17
-style G1_05 fill:#FFE082,stroke:#F57F17
-style G1_06 fill:#FFD54F,stroke:#F57F17
-style G2_01 fill:#FFF8E1,stroke:#F57F17
-style G2_02 fill:#FFF8E1,stroke:#F57F17
-style G2_03 fill:#FFF8E1,stroke:#F57F17
-style G2_04 fill:#FFE082,stroke:#F57F17
-style G2_05 fill:#FFD54F,stroke:#F57F17
-style G3_01 fill:#FFF8E1,stroke:#F57F17
-style G3_02 fill:#FFF8E1,stroke:#F57F17
-style G3_03 fill:#FFF8E1,stroke:#F57F17
-style G3_04 fill:#FFF8E1,stroke:#F57F17
-style G3_05 fill:#FFE082,stroke:#F57F17
-style G3_06 fill:#FFD54F,stroke:#F57F17
-style G4_01 fill:#FFF8E1,stroke:#F57F17
-style G4_02 fill:#FFE082,stroke:#F57F17
-style G4_03 fill:#FFCC80,stroke:#E65100
-style G4_04 fill:#FFF8E1,stroke:#F57F17
-style G4_05 fill:#FFF8E1,stroke:#F57F17
-style G4_06 fill:#FFF8E1,stroke:#F57F17
-style G4_07 fill:#FFD54F,stroke:#F57F17
-
-%% Stage 1 — blue
-style S1_01 fill:#E3F2FD,stroke:#1565C0
-style S1_02 fill:#E3F2FD,stroke:#1565C0
-style S1_03 fill:#E3F2FD,stroke:#1565C0
-style S1_04 fill:#E3F2FD,stroke:#1565C0
-style S1_05 fill:#E3F2FD,stroke:#1565C0
-style S1_06 fill:#BBDEFB,stroke:#1565C0
-
-%% Stage 2 — teal
-style S2_01 fill:#E0F2F1,stroke:#00695C
-style S2_02 fill:#E0F2F1,stroke:#00695C
-style S2_03 fill:#E0F2F1,stroke:#00695C
-style S2_04 fill:#E0F2F1,stroke:#00695C
-style S2_05 fill:#E0F2F1,stroke:#00695C
-style S2_06 fill:#E0F2F1,stroke:#00695C
-style S2_07 fill:#B2DFDB,stroke:#00695C
-style S2_08 fill:#E0F2F1,stroke:#00695C
-style S2_09 fill:#E0F2F1,stroke:#00695C
-style S2_10 fill:#E0F2F1,stroke:#00695C
-style S2_11 fill:#E0F2F1,stroke:#00695C
-style S2_12 fill:#B2DFDB,stroke:#00695C
-style S2_13 fill:#E0F2F1,stroke:#00695C
-style S2_14 fill:#E0F2F1,stroke:#00695C
-style S2_15 fill:#E0F2F1,stroke:#00695C
-style S2_16 fill:#E0F2F1,stroke:#00695C
-style S2_17 fill:#B2DFDB,stroke:#00695C
-
-%% Stage 3 — green
-style S3_01 fill:#E8F5E9,stroke:#2E7D32
-style S3_02 fill:#E8F5E9,stroke:#2E7D32
-style S3_03 fill:#E8F5E9,stroke:#2E7D32
-style S3_04 fill:#E8F5E9,stroke:#2E7D32
-style S3_05 fill:#E8F5E9,stroke:#2E7D32
-style S3_06 fill:#E8F5E9,stroke:#2E7D32
-style S3_07 fill:#C8E6C9,stroke:#2E7D32
-style S3_08 fill:#E8F5E9,stroke:#2E7D32
-style S3_09 fill:#E8F5E9,stroke:#2E7D32
-style S3_10 fill:#E8F5E9,stroke:#2E7D32
-style S3_11 fill:#C8E6C9,stroke:#2E7D32
-style S3_12 fill:#E8F5E9,stroke:#2E7D32
-style S3_13 fill:#E8F5E9,stroke:#2E7D32
-style S3_14 fill:#E8F5E9,stroke:#2E7D32
-style S3_15 fill:#E8F5E9,stroke:#2E7D32
-style S3_16 fill:#C8E6C9,stroke:#2E7D32
-
-%% Stage 4 — indigo
-style S4_01 fill:#E8EAF6,stroke:#283593
-style S4_02 fill:#E8EAF6,stroke:#283593
-style S4_03 fill:#E8EAF6,stroke:#283593
-style S4_04 fill:#E8EAF6,stroke:#283593
-style S4_05 fill:#C5CAE9,stroke:#283593
-style S4_06 fill:#E8EAF6,stroke:#283593
-style S4_07 fill:#E8EAF6,stroke:#283593
-style S4_08 fill:#E8EAF6,stroke:#283593
-style S4_09 fill:#C5CAE9,stroke:#283593
-
-%% Stage 5 — cyan
-style S5_01 fill:#E0F7FA,stroke:#00838F
-style S5_02 fill:#E0F7FA,stroke:#00838F
-style S5_03 fill:#E0F7FA,stroke:#00838F
-style S5_04 fill:#E0F7FA,stroke:#00838F
-style S5_05 fill:#B2EBF2,stroke:#00838F
-style S5_06 fill:#E0F7FA,stroke:#00838F
-style S5_07 fill:#E0F7FA,stroke:#00838F
-style S5_08 fill:#E0F7FA,stroke:#00838F
-style S5_09 fill:#E0F7FA,stroke:#00838F
-style S5_10 fill:#E0F7FA,stroke:#00838F
-style S5_11 fill:#B2EBF2,stroke:#00838F
-style S5_12 fill:#E0F7FA,stroke:#00838F
-style S5_13 fill:#E0F7FA,stroke:#00838F
-style S5_14 fill:#E0F7FA,stroke:#00838F
-style S5_15 fill:#E0F7FA,stroke:#00838F
-style S5_16 fill:#E0F7FA,stroke:#00838F
-style S5_17 fill:#B2EBF2,stroke:#00838F
-
-%% Stage 6 — orange
-style S6_01 fill:#FFF3E0,stroke:#E65100
-style S6_02 fill:#FFF3E0,stroke:#E65100
-style S6_03 fill:#FFF3E0,stroke:#E65100
-style S6_04 fill:#FFF3E0,stroke:#E65100
-style S6_05 fill:#FFF3E0,stroke:#E65100
-style S6_06 fill:#FFE0B2,stroke:#E65100
-style S6_07 fill:#FFF3E0,stroke:#E65100
-style S6_08 fill:#FFE0B2,stroke:#E65100
-style S6_09 fill:#FFF3E0,stroke:#E65100
-style S6_10 fill:#FFF3E0,stroke:#E65100
-style S6_11 fill:#FFF3E0,stroke:#E65100
-style S6_12 fill:#FFE0B2,stroke:#E65100
-style S6_13 fill:#FFF3E0,stroke:#E65100
-style S6_14 fill:#FFF3E0,stroke:#E65100
-style S6_15 fill:#FFF3E0,stroke:#E65100
-style S6_16 fill:#FFF3E0,stroke:#E65100
-style S6_17 fill:#FFE0B2,stroke:#E65100
-
-%% Stage 7 — red/pink
-style S7_01 fill:#FFEBEE,stroke:#C62828
-style S7_02 fill:#FFEBEE,stroke:#C62828
-style S7_03 fill:#FFEBEE,stroke:#C62828
-style S7_04 fill:#FFEBEE,stroke:#C62828
-style S7_05 fill:#FFEBEE,stroke:#C62828
-style S7_06 fill:#FFCDD2,stroke:#C62828
-style S7_07 fill:#FFEBEE,stroke:#C62828
-style S7_08 fill:#FFEBEE,stroke:#C62828
-style S7_09 fill:#FFEBEE,stroke:#C62828
-style S7_10 fill:#FFCDD2,stroke:#C62828
-style S7_11 fill:#FFEBEE,stroke:#C62828
-style S7_12 fill:#FFEBEE,stroke:#C62828
-style S7_13 fill:#FFCDD2,stroke:#C62828
-
-%% Exec Summary — gold
-style E01 fill:#FFF9C4,stroke:#F9A825
-style E02 fill:#FFF9C4,stroke:#F9A825
-style E03 fill:#FFF9C4,stroke:#F9A825
-style E04 fill:#FFF9C4,stroke:#F9A825
-style E05 fill:#FFF176,stroke:#F9A825
-
-%% Decision — green
-style D01 fill:#E8F5E9,stroke:#1B5E20
-style D02 fill:#E8F5E9,stroke:#1B5E20
-style D03 fill:#E8F5E9,stroke:#1B5E20
-style D04 fill:#E8F5E9,stroke:#1B5E20
-style D05 fill:#E8F5E9,stroke:#1B5E20
-style D06 fill:#C8E6C9,stroke:#1B5E20
-
-%% Gate 5 / QC — blue-grey + green sign-offs
-style QC01 fill:#ECEFF1,stroke:#37474F
-style QC02 fill:#ECEFF1,stroke:#37474F
-style QC03 fill:#ECEFF1,stroke:#37474F
-style QC04 fill:#ECEFF1,stroke:#37474F
-style QC05 fill:#ECEFF1,stroke:#37474F
-style QC06 fill:#ECEFF1,stroke:#37474F
-style QC07 fill:#ECEFF1,stroke:#37474F
-style QC08 fill:#ECEFF1,stroke:#37474F
-style QC09 fill:#ECEFF1,stroke:#37474F
-style QC10 fill:#CFD8DC,stroke:#37474F
-style QC11 fill:#A5D6A7,stroke:#1B5E20
-style QC12 fill:#A5D6A7,stroke:#1B5E20
-style QC13 fill:#A5D6A7,stroke:#1B5E20
-style QC14 fill:#A5D6A7,stroke:#1B5E20
-style QC15 fill:#66BB6A,stroke:#1B5E20,color:#FFFFFF
-
-%% Subgraph styles
-style PRE fill:#F3E5F5,stroke:#6A1B9A,stroke-width:2px
-style RACI fill:#F3E5F5,stroke:#6A1B9A,stroke-width:2px
-style G1 fill:#FFFDE7,stroke:#F57F17,stroke-width:3px,stroke-dasharray:8 4
-style G2 fill:#FFFDE7,stroke:#F57F17,stroke-width:3px,stroke-dasharray:8 4
-style G3 fill:#FFFDE7,stroke:#F57F17,stroke-width:3px,stroke-dasharray:8 4
-style G4 fill:#FFFDE7,stroke:#F57F17,stroke-width:3px,stroke-dasharray:8 4
-style G5 fill:#FFFDE7,stroke:#F57F17,stroke-width:3px,stroke-dasharray:8 4
-style S1 fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
-style S2 fill:#E0F2F1,stroke:#00695C,stroke-width:2px
-style S3 fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px
-style S4 fill:#E8EAF6,stroke:#283593,stroke-width:2px
-style S5 fill:#E0F7FA,stroke:#00838F,stroke-width:2px
-style S6 fill:#FFF3E0,stroke:#E65100,stroke-width:2px
-style S7 fill:#FFEBEE,stroke:#C62828,stroke-width:2px
-style EXEC fill:#FFFDE7,stroke:#F9A825,stroke-width:2px
-style DECIDE fill:#E8F5E9,stroke:#1B5E20,stroke-width:2px
+  P09["Assign Memo Owner"]:::s --> P10["Assign Financial Data Owner"]:::s
+  P10 --> P11["Assign Legal / Cap Table Owner"]:::s
+  P11 --> P12["Assign Product / GTM Owner"]:::s
+  P12 --> P13["Resolve scoping decisions with CEO"]:::s
+  P13 --> P14{"Secondary liquidity?"}:::q
+  P14 -- Yes --> P15["Document sellers & amount"]:::s
+  P14 -- No --> P16{"Insider participation?"}:::q
+  P15 --> P16
+  P16 -- Yes --> P17["Document pro rata commitments"]:::s
+  P16 -- No --> P18["Confirm syndicate strategy & term sheet status"]:::s
+  P17 --> P18
+  P18 --> P19["Finalize page budget: ~20pg core + 30–40pg appendix"]:::m
+  classDef s fill:#ede9fe,stroke:#8b5cf6,color:#1e1b4b
+  classDef q fill:#c4b5fd,stroke:#7c3aed,color:#1e1b4b,font-weight:700
+  classDef m fill:#7c3aed,stroke:#6d28d9,color:#fff,font-weight:700
 ```
 
 ---
 
-## Step Count Summary
+## 🚧 Gate 1: Metrics Definition Lock
 
-| Phase | Steps | Nodes |
-|-------|-------|-------|
-| Pre-Production: Scoping | 8 | P01–P08 |
-| Pre-Production: Ownership | 11 | P09–P19 |
-| Gate 1: Metrics Lock | 6 | G1_01–G1_06 |
-| Stage 1: The Hook | 6 | S1_01–S1_06 |
-| Stage 2: The Opportunity | 17 | S2_01–S2_17 |
-| Stage 3: The Proof | 16 | S3_01–S3_16 |
-| Stage 4: The Team | 9 | S4_01–S4_09 |
-| Gate 2: Financial Reconciliation | 5 | G2_01–G2_05 |
-| Stage 5: The Numbers | 17 | S5_01–S5_17 |
-| Gate 3: Cap Table Reconciliation | 6 | G3_01–G3_06 |
-| Stage 6: The Ask | 17 | S6_01–S6_17 |
-| Stage 7: Risk & Close | 13 | S7_01–S7_13 |
-| Executive Summary | 5 | E01–E05 |
-| Gate 4: Appendix Completeness | 7 | G4_01–G4_07 |
-| Decision & Approval | 6 | D01–D06 |
-| Gate 5: Sign-Off & QC | 15 | QC01–QC15 |
-| **TOTAL** | **164 nodes** | **100+ action steps** |
+> Lock all KPI definitions before drafting — the #1 cause of credibility failure.
+
+```mermaid
+flowchart LR
+  A["Define ARR methodology"]:::s --> B["Define NRR calculation"]:::s
+  B --> C["Define churn: logo vs. revenue, gross vs. net"]:::s
+  C --> D["Define CAC scope: fully loaded vs. direct"]:::s
+  D --> E{"All definitions locked?"}:::g
+  E -- No --> A
+  E -- Yes --> F["Financial Data Owner: SIGN-OFF ✓"]:::pass
+  classDef s fill:#fef3c7,stroke:#d97706,color:#78350f
+  classDef g fill:#fbbf24,stroke:#d97706,color:#78350f,font-weight:700
+  classDef pass fill:#16a34a,stroke:#15803d,color:#fff,font-weight:700
+```
 
 ---
 
-*IC Production Blueprint v2.0 — Confidential*
+## Stage 1: The Hook — Company Overview
+
+> *Sections 1–2 · Who are you, what do you do, and how did you get here?*
+
+```mermaid
+flowchart TB
+  A["Draft Company Overview: mission, founding story, milestones"]:::s --> B["Legal: Corporate structure — entity, jurisdiction, subs"]:::s
+  B --> C["Legal: Cap table summary — founders / pool / investors"]:::s
+  C --> D["Finance: Headcount breakdown by function"]:::s
+  D --> E["Finance: Prior funding summary — round, amount, lead"]:::s
+  E --> F["Compile Section 2 — Company Overview"]:::c
+  classDef s fill:#dbeafe,stroke:#3b82f6,color:#1e3a5f
+  classDef c fill:#2563eb,stroke:#1d4ed8,color:#fff,font-weight:700
+```
+
+---
+
+## Stage 2: The Opportunity
+
+> *Sections 3–5 · Market sizing, problem/solution fit, and business model economics.*
+
+```mermaid
+flowchart TB
+  subgraph MKT["Section 3 · Market Opportunity"]
+    direction TB
+    M1["TAM: top-down from industry reports"]:::s --> M2["TAM: bottom-up from customers × ACV"]:::s
+    M2 --> M3["Reconcile top-down & bottom-up"]:::s
+    M3 --> M4["Define SAM & SOM with penetration logic"]:::s
+    M4 --> M5["Document 2–4 market tailwinds with sources"]:::s
+    M5 --> M6["Address regulatory landscape"]:::s
+    M6 --> M7["Compile Section 3"]:::c
+  end
+  subgraph PROB["Section 4 · Problem & Solution"]
+    direction TB
+    P1["Quantify customer pain in $ / hours / error rates"]:::s --> P2["Document current alternatives & shortcomings"]:::s
+    P2 --> P3["Present core solution mechanism"]:::s
+    P3 --> P4["Customer validation: NPS, quotes, case studies"]:::s
+    P4 --> P5["Compile Section 4"]:::c
+  end
+  subgraph BIZ["Section 5 · Business Model"]
+    direction TB
+    B1["Revenue model: pricing tiers, billing, contracts"]:::s --> B2["Unit economics: LTV, CAC, LTV:CAC, payback"]:::s
+    B2 --> B3["Gross margin profile & trend over time"]:::s
+    B3 --> B4["Expansion revenue mechanics"]:::s
+    B4 --> B5["Compile Section 5"]:::c
+  end
+  MKT --> PROB --> BIZ
+  classDef s fill:#ccfbf1,stroke:#14b8a6,color:#134e4a
+  classDef c fill:#0d9488,stroke:#0f766e,color:#fff,font-weight:700
+```
+
+---
+
+## Stage 3: The Proof
+
+> *Sections 6–8 · Traction evidence, competitive defensibility, and GTM execution.*
+
+```mermaid
+flowchart TB
+  subgraph TRAC["Section 6 · Traction & Key Metrics"]
+    direction TB
+    T1["Pull ARR/MRR trajectory — monthly & annual"]:::s --> T2["Calculate YoY & QoQ growth rates"]:::s
+    T2 --> T3["Customer count trajectory & logo churn"]:::s
+    T3 --> T4["NRR & gross retention from cohort data"]:::s
+    T4 --> T5["Efficiency: burn multiple, rev per employee"]:::s
+    T5 --> T6["Pipeline as multiple of quota"]:::s
+    T6 --> T7["Compile Section 6"]:::c
+  end
+  subgraph COMP["Section 7 · Competitive Landscape"]
+    direction TB
+    C1["Build 2×2 competitive positioning map"]:::s --> C2["Win/loss data against named competitors"]:::s
+    C2 --> C3["Document moats: switching costs, IP, data network"]:::s
+    C3 --> C4["Compile Section 7"]:::c
+  end
+  subgraph GTM["Section 8 · Go-to-Market Strategy"]
+    direction TB
+    G1x["Define sales motion: PLG / direct / channel / hybrid"]:::s --> G2x["Funnel conversion rates by stage"]:::s
+    G2x --> G3x["Quota attainment, ramp time, sales cycle length"]:::s
+    G3x --> G4x["Magic number & CAC by channel"]:::s
+    G4x --> G5x["Compile Section 8"]:::c
+  end
+  TRAC --> COMP --> GTM
+  classDef s fill:#dcfce7,stroke:#22c55e,color:#14532d
+  classDef c fill:#16a34a,stroke:#15803d,color:#fff,font-weight:700
+```
+
+---
+
+## Stage 4: The Team
+
+> *Sections 9–10 · Leadership profiles, org capability, board & advisors.*
+
+```mermaid
+flowchart TB
+  A["Draft founder & C-suite profiles with domain expertise"]:::s --> B["Org chart & headcount breakdown by department"]:::s
+  B --> C["Key hires planned with this round's capital"]:::s
+  C --> D["Retention metrics: voluntary turnover, avg tenure"]:::s
+  D --> E["Compile Section 9 — Team & Leadership"]:::c
+  E --> F["Board members with backgrounds & independence status"]:::s
+  F --> G["Strategic advisors & specific value provided"]:::s
+  G --> H["Existing investor follow-on commitments"]:::s
+  H --> I["Compile Section 10 — Board & Advisors"]:::c
+  classDef s fill:#e0e7ff,stroke:#6366f1,color:#1e1b4b
+  classDef c fill:#4f46e5,stroke:#4338ca,color:#fff,font-weight:700
+```
+
+---
+
+## 🚧 Gate 2: Financial Reconciliation
+
+> Every number traces to the model → model traces to the GL → revenue consistent everywhere.
+
+```mermaid
+flowchart LR
+  A["Map every memo figure to a named model cell"]:::s --> B["Reconcile model to GL actuals: less than 1% variance"]:::s
+  B --> C["Verify internal consistency: S1 = S6 = S11 = model"]:::s
+  C --> D{"All 3 reconciliation layers pass?"}:::g
+  D -- No --> A
+  D -- Yes --> E["Finance + Memo Owner: JOINT SIGN-OFF ✓"]:::pass
+  classDef s fill:#fef3c7,stroke:#d97706,color:#78350f
+  classDef g fill:#fbbf24,stroke:#d97706,color:#78350f,font-weight:700
+  classDef pass fill:#16a34a,stroke:#15803d,color:#fff,font-weight:700
+```
+
+---
+
+## Stage 5: The Numbers
+
+> *Sections 11–13 · Historical financials, forward projections, and cash/runway.*
+
+```mermaid
+flowchart TB
+  subgraph HIST["Section 11 · Historical Financials"]
+    direction TB
+    H1["P&L summary: 2–3 FY of revenue, COGS, OpEx, EBITDA"]:::s --> H2["Balance sheet: cash, working capital, debt"]:::s
+    H2 --> H3["Cash flow summary & non-recurring items"]:::s
+    H3 --> H4["Quarterly trends where contextual"]:::s
+    H4 --> H5["Compile Section 11"]:::c
+  end
+  subgraph PROJ["Section 12 · Financial Projections"]
+    direction TB
+    F1["3–5 year revenue forecast with quarterly Y1 detail"]:::s --> F2["Key assumptions: customer growth, ACV, NRR, hiring"]:::s
+    F2 --> F3["Scenario analysis: base, bull, bear cases"]:::s
+    F3 --> F4["Revenue bridge: new logos + expansion − churn"]:::s
+    F4 --> F5["Path to profitability & FCF trajectory"]:::s
+    F5 --> F6["Compile Section 12"]:::c
+  end
+  subgraph CASH["Section 13 · Cash & Runway"]
+    direction TB
+    R1["Current cash position at most recent month-end"]:::s --> R2["Monthly burn rate: trailing 3-month average"]:::s
+    R2 --> R3["Runway in months & post-raise runway"]:::s
+    R3 --> R4["Cash waterfall: opening + raise − projected burn"]:::s
+    R4 --> R5["Map milestones to capital required & timelines"]:::s
+    R5 --> R6["Compile Section 13"]:::c
+  end
+  HIST --> PROJ --> CASH
+  classDef s fill:#cffafe,stroke:#06b6d4,color:#164e63
+  classDef c fill:#0891b2,stroke:#0e7490,color:#fff,font-weight:700
+```
+
+---
+
+## 🚧 Gate 3: Cap Table & Legal Reconciliation
+
+```mermaid
+flowchart LR
+  A["Verify current ownership percentages"]:::s --> B["Verify option pool size & outstanding convertibles"]:::s
+  B --> C["Calculate pro forma ownership post-raise"]:::s
+  C --> D["External counsel: confirm all obligations"]:::s
+  D --> E{"Cap table fully reconciled?"}:::g
+  E -- No --> A
+  E -- Yes --> F["Legal + Counsel: JOINT SIGN-OFF ✓"]:::pass
+  classDef s fill:#fef3c7,stroke:#d97706,color:#78350f
+  classDef g fill:#fbbf24,stroke:#d97706,color:#78350f,font-weight:700
+  classDef pass fill:#16a34a,stroke:#15803d,color:#fff,font-weight:700
+```
+
+---
+
+## Stage 6: The Ask
+
+> *Sections 14–15 · Define the raise, justify the valuation, make the investment case.*
+
+```mermaid
+flowchart TB
+  subgraph RAISE["Section 14 · The Raise"]
+    direction TB
+    R1["State round size & structure"]:::s --> R2["Pre-money & post-money valuation"]:::s
+    R2 --> R3["Use of proceeds: 3–5 categories with $ and %"]:::s
+    R3 --> R4["Pro forma ownership table / dilution impact"]:::s
+    R4 --> R5["Target close timeline & existing commitments"]:::s
+    R5 --> R6{"Transaction mechanics needed?"}:::q
+    R6 -- Yes --> R7["Secondary split, insider participation, syndicate strategy"]:::s
+    R6 -- No --> R8["Compile Section 14"]:::c
+    R7 --> R8
+  end
+  subgraph VAL["Section 15 · Valuation Support"]
+    direction TB
+    V1["Comparable company analysis: 5–8 comps with multiples"]:::s --> V2["Precedent transactions at comparable stage"]:::s
+    V2 --> V3["Growth-adjusted multiples"]:::s
+    V3 --> V4{"Business mature enough for DCF?"}:::q
+    V4 -- Yes --> V5["Build DCF: WACC + terminal value"]:::s
+    V4 -- No --> V6["Triangulate implied valuation range: low / mid / high"]:::s
+    V5 --> V6
+    V6 --> V7["Internal bridge-to-offer: floor / target / ceiling"]:::s
+    V7 --> V8["Market condition note & comp refresh date"]:::s
+    V8 --> V9["Compile Section 15"]:::c
+  end
+  RAISE --> VAL
+  classDef s fill:#ffedd5,stroke:#f97316,color:#431407
+  classDef q fill:#fdba74,stroke:#ea580c,color:#431407,font-weight:700
+  classDef c fill:#ea580c,stroke:#c2410c,color:#fff,font-weight:700
+```
+
+---
+
+## Stage 7: Risk & Close
+
+> *Sections 16–18 · Risks & mitigants, milestones, and appendix assembly.*
+
+```mermaid
+flowchart TB
+  subgraph RISK["Section 16 · Key Risks & Mitigants"]
+    direction TB
+    K1["Market risks: demand volatility, competitive threats, macro"]:::s --> K2["Execution risks: key person, hiring, product delivery"]:::s
+    K2 --> K3["Financial risks: concentration, capital needs, dilution"]:::s
+    K3 --> K4["Regulatory risks: compliance, litigation, IP, privacy"]:::s
+    K4 --> K5["Pair each risk with a specific, measurable mitigant"]:::s
+    K5 --> K6["Compile Section 16"]:::c
+  end
+  subgraph MILE["Section 17 · Milestones & Path Forward"]
+    direction TB
+    M1["12–18 month milestone plan with quarterly waypoints"]:::s --> M2["Identify next-round trigger metrics"]:::s
+    M2 --> M3["Articulate long-term vision & potential exit paths"]:::s
+    M3 --> M4["Compile Section 17"]:::c
+  end
+  subgraph APPX["Section 18 · Appendices Index"]
+    direction TB
+    A1["Build index: A-series, B-series, C-series, D-series codes"]:::s --> A2["Apply confidentiality tiering to each item"]:::s
+    A2 --> A3["Compile Section 18 — Appendix Index"]:::c
+  end
+  RISK --> MILE --> APPX
+  classDef s fill:#fee2e2,stroke:#ef4444,color:#450a0a
+  classDef c fill:#dc2626,stroke:#b91c1c,color:#fff,font-weight:700
+```
+
+---
+
+## ⭐ Executive Summary — Written Last
+
+> *After all 17 sections are complete, write the exec summary. Max 1 page.*
+
+```mermaid
+flowchart LR
+  A["Draft 1-sentence company description"]:::s --> B["Pull 3–5 finalized headline metrics: ARR, growth, NRR"]:::s
+  B --> C["Summarize round size, valuation, use of proceeds"]:::s
+  C --> D["Write forward-looking milestone statement"]:::s
+  D --> E["Compile Section 1 — Executive Summary — max 1 page"]:::c
+  classDef s fill:#fef9c3,stroke:#ca8a04,color:#713f12
+  classDef c fill:#ca8a04,stroke:#a16207,color:#fff,font-weight:700
+```
+
+---
+
+## 🚧 Gate 4: Appendix Completeness
+
+```mermaid
+flowchart LR
+  A["Review each section for data-dependent claims"]:::s --> B{"Every claim has appendix support?"}:::g
+  B -- No --> C["Add evidence OR remove unsupported claim"]:::fix
+  C --> A
+  B -- Yes --> D["Verify customer references cleared"]:::s
+  D --> E["Verify product screenshots current"]:::s
+  E --> F["Verify market data sources cited"]:::s
+  F --> G["Memo Owner: SIGN-OFF ✓"]:::pass
+  classDef s fill:#fef3c7,stroke:#d97706,color:#78350f
+  classDef g fill:#fbbf24,stroke:#d97706,color:#78350f,font-weight:700
+  classDef fix fill:#fed7aa,stroke:#ea580c,color:#431407
+  classDef pass fill:#16a34a,stroke:#15803d,color:#fff,font-weight:700
+```
+
+---
+
+## ✅ Decision & Approval Block — Section 19
+
+```mermaid
+flowchart LR
+  A["Draft decision requested: specific approval sought"]:::s --> B["Define approval conditions & non-negotiables"]:::s
+  B --> C["Define acceptable negotiation range"]:::s
+  C --> D["Document fallback plan with quantified runway"]:::s
+  D --> E["Define escalation triggers requiring re-approval"]:::s
+  E --> F["Compile Section 19 — Decision & Approval Block"]:::c
+  classDef s fill:#dcfce7,stroke:#22c55e,color:#14532d
+  classDef c fill:#15803d,stroke:#166534,color:#fff,font-weight:700
+```
+
+---
+
+## 🚧 Gate 5: Final Sign-Off & Pre-Submission QC
+
+```mermaid
+flowchart TB
+  subgraph QC["Pre-Submission Checklist"]
+    direction TB
+    Q1["All financials match model exactly"]:::ck --> Q2["Revenue/ARR consistent across S1, S6, S11, S12, S14"]:::ck
+    Q2 --> Q3["Burn rate uses trailing 3-month actuals"]:::ck
+    Q3 --> Q4["Use of proceeds ties to hiring plan & milestone map"]:::ck
+    Q4 --> Q5["Comp set refreshed within 30 days"]:::ck
+    Q5 --> Q6["Customer names/logos NDA-cleared"]:::ck
+    Q6 --> Q7["Risk disclosures reviewed by Legal"]:::ck
+    Q7 --> Q8["No section exceeds page budget by more than 50%"]:::ck
+    Q8 --> Q9["Appendix index complete with version numbers"]:::ck
+  end
+  Q9 --> PASS{"All checks pass?"}:::g
+  PASS -- No --> Q1
+  PASS -- Yes --> S1x["Financial Data Owner ✓"]:::sign
+  S1x --> S2x["Legal / Cap Table Owner ✓"]:::sign
+  S2x --> S3x["CEO ✓"]:::sign
+  S3x --> S4x["Memo Owner ✓"]:::sign
+  S4x --> DONE(["🚀 MEMO CLEARED FOR DISTRIBUTION"]):::go
+  classDef ck fill:#e2e8f0,stroke:#475569,color:#1e293b
+  classDef g fill:#fbbf24,stroke:#d97706,color:#78350f,font-weight:700
+  classDef sign fill:#86efac,stroke:#16a34a,color:#14532d,font-weight:700
+  classDef go fill:#16a34a,stroke:#15803d,color:#fff,font-weight:700
+```
+
+---
+
+## Step Count
+
+| Phase | Steps |
+|---|:---:|
+| Pre-Production: Scoping | 8 |
+| Pre-Production: Ownership | 11 |
+| Gate 1: Metrics Lock | 6 |
+| Stage 1: The Hook | 6 |
+| Stage 2: The Opportunity | 17 |
+| Stage 3: The Proof | 16 |
+| Stage 4: The Team | 9 |
+| Gate 2: Financials | 5 |
+| Stage 5: The Numbers | 17 |
+| Gate 3: Cap Table | 6 |
+| Stage 6: The Ask | 17 |
+| Stage 7: Risk & Close | 13 |
+| Executive Summary | 5 |
+| Gate 4: Appendix | 7 |
+| Decision Block | 6 |
+| Gate 5: Sign-Off & QC | 15 |
+| **Total** | **164** |
+
+---
+
+*IC Production Blueprint v2.0 · Confidential*
